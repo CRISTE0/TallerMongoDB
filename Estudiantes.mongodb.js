@@ -3835,10 +3835,13 @@ db.Estudiantes.insertMany([
 // encontrar estudiantes con edad mayor 30 y con la materia "matematicas"
 // db.Estudiantes.find({ edad:{$gt:30}, materias: "Matematicas"},{"edad.$":1});
 
-// consultar el array estudiantes donde el valor del elemento 'materia' sea igual 'matematicas';
+
+// consultar estudiantes donde el valor del elemento 'materia' sea igual 'matematicas';
 // db.Estudiantes.find({
 //   $and: [{ edad: 13 }, { materias: { $elemMatch: { $eq: "Matematicas" } } }],
 // });
+
+
 
 //encontrar las materias de los estudiantes y 
 //db.Estudiantes.find({},{materias:{$slice:2}});
@@ -3882,113 +3885,4 @@ db.Estudiantes.insertMany([
 
 //encontrar todos los estudiantes que el tamaño de materias sea 1
 //db.Estudiantes.find({materias:{$size:1}});
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////MAESTROS
-
-
-// OPERADORES DE CONSULTA
-
-//encontrar a los maestros con la edad igual a 23
-// db.Estudiantes.find({añosEducando:{$eq:42}});
-
-//encontrar a los maestros con la edad inferior a 23
-// db.Estudiantes.find({añosEducando:{$lt:25}});
-
-//encontrar a los maestros con la edad inferior o igual a 23
-// db.Estudiantes.find({añosEducando:{$lte:25}});
-
-//encontrar a los maestros con la edad mayor a 23
-// db.Estudiantes.find({añosEducando:{$gt:22}});
-
-//encontrar a los maestros con la edad mayor o igual a 23
-// db.Estudiantes.find({añosEducando:{$gte:23}});
-
-//encontrar a los maestros donde aula no sea 102
-//db.Estudiantes.find({Cursos:{$ne:102}});
-
-//encontrar a los maestros donde nombre pertenece a 'Luisa'
-//db.Estudiantes.find({nombre:{$in:['Luisa']}});
-
-//encontrar a los maestros donde nombre no pertenece a 'Carlos'
-//db.Estudiantes.find({nombre:{$nin:['Carlos']}});
-
-
-
-
-//encontrar a los maestros donde direccion:'Avenida 12' y edad:35
-// db.Estudiantes.find({$and:[{direccion:'Avenida 12'},{edad:35}]});
-
-//encontrar a los maestros donde se llamen pablo o sofia
-// db.Estudiantes.find({$or:[{nombre:'Pablo'},{nombre:'Sofia'}]});
-
-//encontrar a los maestros donde no se llamen javier
-//db.Estudiantes.find({nombre:{$not:{$eq:'Javier'}}});
-
-
-
-
-
-// encontrar maestros con edad mayor 30 y con la materia "matematicas"
-// db.Estudiantes.find({ edad:{$gt:30}, materias: "Matematicas"},{"edad.$":1});
-
-// consultar el array maestros donde el valor del elemento 'materia' sea igual 'matematicas';
-// db.Estudiantes.find({
-//   $and: [{ edad: 13 }, { materias: { $elemMatch: { $eq: "Matematicas" } } }],
-// });
-
-//encontrar las materias de los maestros y 
-//db.Estudiantes.find({},{materias:{$slice:2}});
-
-
-
-
-
-// //encontrar todos los maestros que el nombre tenga palabras relacionadas con 'ju'
-// db.Estudiantes.createIndex({nombre:"text"})
-// db.Estudiantes.find({$text:{$search:'Juan'}});
-
-//encontrar todos los maestros que direccion contenga 'Aveni'
-//db.Estudiantes.find({direccion:{$regex:/Aveni/}});
-
-//encontrar todos los maestros donde la suma de la edad y tel sea menor a 500.000
-// db.Estudiantes.find({
-//   $where: "this.edad + this.tel < 500000"
-// });
-
-
-
-
-
-
-//encontrar todos los maestros donde nombre no exista
-// db.Estudiantes.find({nombre:{$exists:false}});
-
-//encontrar todos los maestros donde nombre sea de tipo 'string'
-//db.Estudiantes.find({"nombre":{$type:"string"}});
-
-//encontrar todos los maestros donde edad sea de tipo 'string'
-//db.Estudiantes.find({edad:{$type:"string"}});
-
-
-
-
-
-//encontrar todos los maestros que contengan las materias:'Ingles','Historia'
-// db.Estudiantes.find({materias:{$all:["Ingles","Historia"]}});
-
-//encontrar todos los maestros que el tamaño de materias sea 1
-//db.Estudiantes.find({materias:{$size:1}});
-
 
