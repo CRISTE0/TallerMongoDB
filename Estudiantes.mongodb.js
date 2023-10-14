@@ -1,3 +1,5 @@
+//CRUD
+
 //Cracion Base de Datos
 // use("Colegio");
 
@@ -12,7 +14,6 @@
 //   tel: 245224,
 //   materias: ["Algebra", "Matematicas", "Historia"],
 // });
-
 
 // Insert Many
 db.Estudiantes.insertMany([
@@ -3609,7 +3610,7 @@ db.Estudiantes.insertMany([
     nombre: "Leonardo",
     edad: 12,
     direccion: "Calle 23",
-    materias: [ "Algebra"],
+    materias: ["Algebra"],
   },
   {
     nombre: "Leonardo",
@@ -3698,7 +3699,6 @@ db.Estudiantes.insertMany([
     materias: ["Algebra", "Historia", "Matematicas"],
   },
 
-  
   {
     nombre: "Sofia",
     edad: 34,
@@ -3762,16 +3762,13 @@ db.Estudiantes.insertMany([
     tel: 678924026,
     materias: ["Matematicas", "Algebra"],
   },
-
 ]);
 
 //Find Estudiantes
 // db.Estudiantes.find({edad:18});
 
-
 //Find Estudiantes
 // db.Estudiantes.findOne({edad:18});
-
 
 //Update One Estudiantes
 // db.Estudiantes.updateOne({nombre:"Juan"},{$set:{direccion:"Calle 54",edad:55}});
@@ -3779,146 +3776,110 @@ db.Estudiantes.insertMany([
 //Update Many Estudiantes
 // db.Estudiantes.updateMany({nombre:"Ana"},{$set:{edad:26}});
 
-
 //Delete One Estudiantes
 // db.Estudiantes.deleteOne({edad:55});
-
 
 //Delete Many Estudiantes
 // db.Estudiantes.deleteMany({materias: "Matematicas"});
 
 //Drop collection Estudiantes
-// db.Estudiantes.drop();  
-
+// db.Estudiantes.drop();
 
 // //Drop DataBase Colegio
-// db.dropDatabase("Colegio"); 
-
-
+// db.dropDatabase("Colegio");
 
 // OPERADORES DE CONSULTA
 
-
-
-
 /////inicio op relacionales
 
-//edad de clientes igual a 23
-// db.Clientes.find({age:{$eq:42}})
+//encontrar a los estudiantes con la edad igual a 23
+// db.Estudiantes.find({edad:{$eq:42}})
 
-//edad de clientes inferior a 23
-// db.Clientes.find({age:{$lt:25}})
+//encontrar a los estudiantes con la edad inferior a 23
+// db.Estudiantes.find({edad:{$lt:25}})
 
-//edad de clientes inferior o igual a 23
-// db.Clientes.find({age:{$lt:25}})
+//encontrar a los estudiantes con la edad inferior o igual a 23
+// db.Estudiantes.find({edad:{$lte:25}})
 
-//edad de clientes mayor a 23
-// db.Clientes.find({age:{$gt:22}})
+//encontrar a los estudiantes con la edad mayor a 23
+// db.Estudiantes.find({edad:{$gt:22}})
 
+//encontrar a los estudiantes con la edad mayor o igual a 23
+// db.Estudiantes.find({edad:{$gte:23}})
 
-//edad de clientes mayor o igual a 23
-// db.Clientes.find({age:{$gte:23}})
+//encontrar a los estudiantes donde nombre no sea a Carlos
+//db.Estudiantes.find({nombre:{$ne:'Carlos'}})
 
-//nombre de clientes donde nombre no sea a tatiana
-//db.Clientes.find({name:{$ne:'Tatiana'}})
+//encontrar a los estudiantes donde direccion pertenece a 'Avenida 5'
+//db.Estudiantes.find({direccion:{$in:['Avenida 5']}});
 
-//nombre de clientes donde sex pertenece a 'female
-//db.Clientes.find({sex:{$in:['female']}});
-
-//nombre de clientes donde sex no pertenece a 'female'
-//db.Clientes.find({sex:{$nin:['female']}})
+//encontrar a los estudiantes donde direccion pertenece a 'Avenida 5'
+//db.Estudiantes.find({direccion:{$nin:['Avenida 5']}})
 ///////////////fin op relacionales
-
 
 ///////////////init op logicos
 
-//encontrar clientes donde sex:'female' y age:'55'
-// db.Clientes.find({$and:[{sex:'female'},{age:55}]})
+//encontrar a los estudiantes donde direccion:'Avenida 10' y edad:32
+// db.Estudiantes.find({$and:[{direccion:'Avenida 10'},{edad:55}]})
 
-//encontrar clientes donde se llamen miguel o tatiana
-// db.Clientes.find({$or:[{name:'Miguel'},{name:'Tatiana'}]})
+//encontrar a los estudiantes donde se llamen pablo o sofia
+// db.Estudiantes.find({$or:[{nombre:'Pablo'},{nombre:'Sofia'}]})
 
-//encontrar clientes donde no se llamen miguel
-//db.Clientes.find({name:{$not:{$eq:'Tatiana'}}})
-
+//encontrar a los estudiantes donde no se llamen javier
+//db.Estudiantes.find({nombre:{$not:{$eq:'Javier'}}})
 
 ///////////////fin op logicos
 
-
 ///////////////ini op proyeccion
 
-
-
-// //encontrar estudiantes del semestre 1 , grados>=85 y
-// db.Students.find({semester:1,grades:{$gte:85}},{"grades.$":1});
-
-
+// encontrar estudiantes con edad mayor 30 y con la materia "matematicas"
+// db.Estudiantes.find({ edad:{$gt:30}, materias: "Matematicas"},{"edad.$":1});
 
 // consultar el array students donde el valor del elemento 'school' sea igual 102;
-// db.School.find({zipcode:"63109"},{students:{$elemMatch:{school:102}}});
+// db.Students.find({
+//   $and: [{ edad: 13 }, { materias: { $elemMatch: { $eq: "Matematicas" } } }],
+// });
 
-
-//
-//db.Posts.find({},{comments:{$slice:3}})
+//encontrar las materias de los estudiantes y que muestre 2 elementos
+//db.Estudiantes.find({},{materias:{$slice:2}})
 
 ///////////////fin op proyeccion
 
-
-
-
-
-
-
 ///////////////init op evaluacion
 
+// //encontrar todos los estudiantes que el nombre tenga palabras relacionadas con 'ju'
+// db.Estudiantes.createIndex({nombre:"text"})
+// db.Estudiantes.find({$text:{$search:'Ju'}});
 
-// //encontrar todos los clientes que el nombre tenga palabras relacionadas con 'tatiana'
-// db.Clientes.createIndex({name:"text"})
-// db.Clientes.find({$text:{$search:'Tatiana '}})
+//encontrar todos los Estudiantes que direccion contenga 'Aveni'
+//db.Estudiantes.find({direccion:{$regex:/Aveni/}});
 
-
-//encontrar todos los clientes que adress contenga 'Stre'
-//db.Clientes.find({addres:{$regex:/Stre/}});
-
-//encontrar todos los clientes donde se llamen 'Miguel(el nombre esta encriptado con MD52)'
-// db.Clientes.find({$where:function(){
-//   return (hex_md5(this.name)=="e885d567f57b0f87333c25f7f3a1e381")
-// }})
+//encontrar todos los Estudiantes donde la suma de la edad y tel sea menor a 500.000
+// db.Estudiantes.find({
+//   $where: "this.edad + this.tel < 500000"
+// });
 
 
 ///////////////fin op evaluacion
 
-
-
 ///////////////init op elementos
 
+//encontrar todos los estudiantes donde nombre no exista
+// db.Estudiantes.find({nombre:{$exists:false}})
 
-//encontrar todos los clientes donde campo name exista
-// db.Clientes.find({name:{$exists:true}})
+//encontrar todos los estudiantes donde nombre sea de tipo 'string'
+//db.Estudiantes.find({"nombre":{$type:"string"}})
 
-//encontrar todos los clientes donde campo name sea de tipo 'string'
-//db.Clientes.find({"name":{$type:"string"}})
-
-//encontrar todos los clientes donde campo name sea de tipo 'int'
-//db.Clientes.find({name:{type:"int"}})
-
-//db.Clientes.find({age:{$type:"string"}})
+//encontrar todos los estudiantes donde edad sea de tipo 'string'
+//db.Estudiantes.find({edad:{$type:"string"}})
 
 ///////////////fin op elementos
 
-
-
 ///////////////init op arrays
 
+//trae todos los elementos que contengan las materias:'Ingles','Historia'
+// db.Inventory.find({materias:{$all:["Ingles","Historia"]}})
 
-//trae todos los elementos que contengan los tags:'appliance','school','book'
-// db.Inventory.find({tags:{$all:["appliance","school","book"]}})
-
-
-//trae todos los elementos que el tamaño de tags sea 2
-db.Inventory.find({tags:{$size:2}})
+//trae todos los elementos que el tamaño de materias sea 1
+//db.Inventory.find({materias:{$size:1}})
 ///////////////fin op arrays
-
-
-
-
