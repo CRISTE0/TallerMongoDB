@@ -1,4 +1,21 @@
+//CRUD
+
+//Crecion Base de Datos
 use("Colegio");
+
+//Creacion coleccion Biblioteca
+// db.createCollection("Biblioteca");
+
+//Insertando un dato
+// db.Biblioteca.insertOne({
+//    titulo: "El Viaje Eterno",
+// editorial: "Libros Universales",
+// publicacion: 2020,
+// paginas: 300,
+// idiomas: ["Espanol", "Ingles"],
+// });
+
+//Insert Many
 db.Biblioteca.insertMany([
   {
     titulo: "El Viaje Eterno",
@@ -3525,9 +3542,33 @@ db.Biblioteca.insertMany([
   },
 ]);
 
+//Find Biblioteca
+// db.Biblioteca.find({publicacion:2020});
+
+//Find One Biblioteca
+// db.Biblioteca.findOne({publicacion:2021});
+
+//Update One Biblioteca
+// db.Biblioteca.updateOne({titulo:"El Viaje Eterno"},{$set:{editorial:"Libros Elsyum",paginas:222}});
+
+
+//Update Many Biblioteca
+// db.Biblioteca.updateMany({publicacion:2020},{$set:{paginas:260}});
+
+
+//Delete One Biblioteca
+// db.Biblioteca.deleteOne({publicacion:2018});
 
 
 
+//Delete Many Biblioteca
+//db.Biblioteca.deleteMany({editorial: "Libros de Misterio"});
+
+//Drop collection Biblioteca
+// db.Biblioteca.drop();
+
+// //Drop DataBase Colegio
+// db.dropDatabase("Biblioteca");
 
 
 
@@ -3557,42 +3598,30 @@ db.Biblioteca.insertMany([
 //encontrar en la biblioteca donde editorial no pertenece a 'Castle Books'
 //db.Biblioteca.find({editorial:{$nin:['Castle Books']}});
 
-
-
-
 //encontrar en la biblioteca donde editorial:'Editions Naturelles' y paginas:270
 // db.Biblioteca.find({$and:[{editorial:'Editions Naturelles'},{paginas:270}]});
 
-//encontrar en la biblioteca donde titulo sea llamen El Misterio del Faro o The Ghostly Manor
+//encontrar en la biblioteca donde titulo se llamen El Misterio del Faro o The Ghostly Manor
 // db.Biblioteca.find({$or:[{titulo:'El Misterio del Faro'},{titulo:'The Ghostly Manor'}]});
 
 //encontrar en la biblioteca donde editorial no sea 'Historias Antiguas'
 //db.Biblioteca.find({editorial:{$not:{$eq:'Historias Antiguas'}}});
 
-
-
-
-
 // encontrar en la biblioteca con publicacion mayor 2020 y con idioma "Español"
-// db.Biblioteca.find({ publicacion:{$gt:2020}, idiomas: "Español"},{"publicacion.$":1});
+// db.Biblioteca.find({ publicacion:{$gt:2020}, idiomas: "Espanol"},{"publicacion.$":1});
 
-
-// consultar en la biblioteca con publicacion donde el valor del elemento 'idiomas' sea igual 'Ingles' y publicacion sea :2021
+// consultar en la biblioteca con publicacion donde el valor del elemento 'idiomas' sea igual 'Ingles' y publicacion sea :2020
 // db.Biblioteca.find({
-//   $and: [{ publicacion: 2021 }, { idiomas: { $elemMatch: { $eq: "Ingles" } } }],
+//   $and: [{ publicacion: 2020 }, { idiomas: { $elemMatch: { $eq: "Ingles" } } }],
 // });
 
+//encontrar en la biblioteca los idiomas y devuelve 1 idioma
+//db.Biblioteca.find({},{idiomas:{$slice:1}});
 
-//encontrar en la biblioteca los idiomas y devuelve 2 idiomas
-//db.Biblioteca.find({},{idiomas:{$slice:2}});
-
-
-
-
-
-// //encontrar en la biblioteca todos los libros en titulo tenga palabras relacionadas con 'The Haunted Forest'
+// //encontrar en la biblioteca todos los libros que el titulo tenga palabras relacionadas con 'The Curse of the Pharaohs'
 // db.Biblioteca.createIndex({titulo:"text"})
-// db.Biblioteca.find({$text:{$search:'The Haunted Forest'}});
+// db.Biblioteca.find({$text:{$search:'The Curse of the Pharaohs'}});
+
 
 //encontrar en la biblioteca todos los libros que editorial contenga 'Dragon'
 //db.Biblioteca.find({editorial:{$regex:/Dragon/}});
@@ -3602,27 +3631,18 @@ db.Biblioteca.insertMany([
 //   $where: "this.publicacion + this.paginas <= 3250"
 // });
 
-
-
-
-
-
 //encontrar en la biblioteca todos los libros donde titulo exista
 // db.Biblioteca.find({titulo:{$exists:true}});
 
 //encontrar en la biblioteca todos los libros donde paginas sea de tipo 'string'
-//db.Biblioteca.find({"paginas":{$type:"string"}});
+//db.Biblioteca.find({paginas:{$type:"string"}});
 
 //encontrar en la biblioteca todos los libros donde publicacion sea de tipo 'int'
 //db.Biblioteca.find({publicacion:{$type:"int"}});
 
-
-
-
-
 //encontrar  en la biblioteca todos los libros contengan las materias:'Español','Ingles'
-// db.Biblioteca.find({idiomas:{$all:["Español","Ingles"]}});
+//db.Biblioteca.find({idiomas:{$all:["Espanol","Ingles"]}});
+
 
 //encontrar  en la biblioteca todos los libros que el tamaño de idiomas sea 1
 //db.Biblioteca.find({idiomas:{$size:1}});
-

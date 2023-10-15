@@ -1,6 +1,6 @@
 //CRUD
 
-//Cracion Base de Datos
+//Crecion Base de Datos
 // use("Colegio");
 
 //Creacion coleccion Estudiantes
