@@ -3524,3 +3524,105 @@ db.Biblioteca.insertMany([
     idiomas: ["Ingles"],
   },
 ]);
+
+
+
+
+
+
+
+// OPERADORES DE CONSULTA
+
+//encontrar en la biblioteca con la publicacion igual a 2022
+// db.Biblioteca.find({publicacion:{$eq:2022}});
+
+//encontrar en la biblioteca con la publicacion inferior a 2021
+// db.Biblioteca.find({publicacion:{$lt:2021}});
+
+//encontrar en la biblioteca con la publicacion inferior o igual a 2020
+// db.Biblioteca.find({publicacion:{$lte:2020}});
+
+//encontrar en la biblioteca con la publicacion mayor a 2018
+// db.Biblioteca.find({publicacion:{$gt:2018}});
+
+//encontrar en la biblioteca con la publicacion mayor o igual a 2019
+// db.Biblioteca.find({publicacion:{$gte:2019}});
+
+//encontrar en la biblioteca donde titulo no sea a viaje al futuro
+//db.Biblioteca.find({titulo:{$ne:'Viaje al futuro'}});
+
+//encontrar en la biblioteca donde editorial pertenece a 'Pharaon Editions'
+//db.Biblioteca.find({editorial:{$in:['Pharaon Editions']}});
+
+//encontrar en la biblioteca donde editorial no pertenece a 'Castle Books'
+//db.Biblioteca.find({editorial:{$nin:['Castle Books']}});
+
+
+
+
+//encontrar en la biblioteca donde editorial:'Editions Naturelles' y paginas:270
+// db.Biblioteca.find({$and:[{editorial:'Editions Naturelles'},{paginas:270}]});
+
+//encontrar en la biblioteca donde titulo sea llamen El Misterio del Faro o The Ghostly Manor
+// db.Biblioteca.find({$or:[{titulo:'El Misterio del Faro'},{titulo:'The Ghostly Manor'}]});
+
+//encontrar en la biblioteca donde editorial no sea 'Historias Antiguas'
+//db.Biblioteca.find({editorial:{$not:{$eq:'Historias Antiguas'}}});
+
+
+
+
+
+// encontrar en la biblioteca con publicacion mayor 2020 y con idioma "Español"
+// db.Biblioteca.find({ publicacion:{$gt:2020}, idiomas: "Español"},{"publicacion.$":1});
+
+
+// consultar en la biblioteca con publicacion donde el valor del elemento 'idiomas' sea igual 'Ingles' y publicacion sea :2021
+// db.Biblioteca.find({
+//   $and: [{ publicacion: 2021 }, { idiomas: { $elemMatch: { $eq: "Ingles" } } }],
+// });
+
+
+//encontrar en la biblioteca los idiomas y devuelve 2 idiomas
+//db.Biblioteca.find({},{idiomas:{$slice:2}});
+
+
+
+
+
+// //encontrar en la biblioteca todos los libros en titulo tenga palabras relacionadas con 'The Haunted Forest'
+// db.Biblioteca.createIndex({titulo:"text"})
+// db.Biblioteca.find({$text:{$search:'The Haunted Forest'}});
+
+//encontrar en la biblioteca todos los libros que editorial contenga 'Dragon'
+//db.Biblioteca.find({editorial:{$regex:/Dragon/}});
+
+//encontrar en la biblioteca todos los libros donde la suma de la publicacion y paginas sea menor o igual a 3.250
+// db.Biblioteca.find({
+//   $where: "this.publicacion + this.paginas <= 3250"
+// });
+
+
+
+
+
+
+//encontrar en la biblioteca todos los libros donde titulo exista
+// db.Biblioteca.find({titulo:{$exists:true}});
+
+//encontrar en la biblioteca todos los libros donde paginas sea de tipo 'string'
+//db.Biblioteca.find({"paginas":{$type:"string"}});
+
+//encontrar en la biblioteca todos los libros donde publicacion sea de tipo 'int'
+//db.Biblioteca.find({publicacion:{$type:"int"}});
+
+
+
+
+
+//encontrar  en la biblioteca todos los libros contengan las materias:'Español','Ingles'
+// db.Biblioteca.find({idiomas:{$all:["Español","Ingles"]}});
+
+//encontrar  en la biblioteca todos los libros que el tamaño de idiomas sea 1
+//db.Biblioteca.find({idiomas:{$size:1}});
+

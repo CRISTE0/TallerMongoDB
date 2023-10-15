@@ -1,6 +1,28 @@
 //CRUD
 use("Colegio");
 
+
+//Crecion Base de Datos
+// use("Colegio");
+
+//Creacion coleccion Maestros
+// db.createCollection("Maestros");
+
+//Insertando un dato
+// db.Maestros.insertOne({
+//  nombre: "Juan",
+// edad: 38,
+// añosEducando: 5,
+// tel: 123456,
+// Cursos: [
+//   {
+//     Nombre: "Matematicas",
+//     Dia: "Lunes y Miercoles",
+//     Aula: 30,
+//   },
+// ],
+// });
+
 db.Maestros.insertMany([
   {
     nombre: "Juan",
@@ -6634,21 +6656,50 @@ db.Maestros.insertMany([
   },
 ]);
 
+//Find Maestros
+//db.Maestros.find({añosEducando:18});
+
+
+//Find One Maestros
+// db.Maestros.findOne({añosEducando:18});
+
+
+//Update One Maestros
+// db.Maestros.updateOne({nombre:"Juan"},{$set:{añosEducando:2,edad:55}});
+
+//Update Many Maestros
+// db.Maestros.updateMany({nombre:"Ana"},{$set:{edad:26}});
+
+//Delete One Maestros
+// db.Maestros.deleteOne({edad:55});
+
+
+//Delete Many Maestros
+//db.Maestros.deleteMany({"Cursos.Nombre": "Ingles"});
+
+//Drop collection Maestros
+// db.Maestros.drop();
+
+// //Drop DataBase Colegio
+// db.dropDatabase("Colegio");
+
+
+
 // OPERADORES DE CONSULTA
 
-//encontrar a los maestros con la edad igual a 23
+//encontrar a los maestros con añosEducando igual a 42
 // db.Maestros.find({añosEducando:{$eq:42}});
 
-//encontrar a los maestros con la edad inferior a 23
+//encontrar a los maestros con añosEducando inferior a 25
 // db.Maestros.find({añosEducando:{$lt:25}});
 
-//encontrar a los maestros con la edad inferior o igual a 23
+//encontrar a los maestros con añosEducando inferior o igual a 25
 // db.Maestros.find({añosEducando:{$lte:25}});
 
-//encontrar a los maestros con la edad mayor a 23
+//encontrar a los maestros con añosEducando mayor a 22
 // db.Maestros.find({añosEducando:{$gt:22}});
 
-//encontrar a los maestros con la edad mayor o igual a 23
+//encontrar a los maestros con añosEducando mayor o igual a 23
 // db.Maestros.find({añosEducando:{$gte:23}});
 
 //encontrar a los maestros donde aula no sea 102
@@ -6661,7 +6712,7 @@ db.Maestros.insertMany([
 //db.Maestros.find({nombre:{$nin:['Carlos']}});
 
 //encontrar a los maestros donde tel:987654321 y nombre:'Laura'
-// db.Maestros.find({$and:[{tel:987654321},{nombre:Laura}]});
+// db.Maestros.find({$and:[{tel:987654321},{nombre:"Laura"}]});
 
 //encontrar a los maestros donde la edad sea 26 o 37
 // db.Maestros.find({$or:[{edad:26},{edad:37}]});
@@ -6673,12 +6724,13 @@ db.Maestros.insertMany([
 // db.Maestros.find(
 //   {
 //     tel: { $gt: 3344356 },
-//     "Cursos.Aula": 19,
+//     "Cursos.Aula": 30,
 //   },
 //   {
 //     "tel.$": 1,
 //   }
 // );
+
 
 // consultar maestros donde el valor del elemento 'nombre del curso' sea igual 'ingles' y añosEducando : 7
 // db.Maestros.find({
